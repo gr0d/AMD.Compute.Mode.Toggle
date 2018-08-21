@@ -1,0 +1,153 @@
+﻿ Private Sub GetAdapters()
+
+            Dim RK As Microsoft.Win32.RegistryKey =
+            Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive.LocalMachine, Microsoft.Win32.RegistryView.Registry64).OpenSubKey(My.Settings.DisplayDriverRootPath)
+
+            Dim GPUInfo As cGPUInfo = Nothing
+
+            Try
+
+                For Each item In RK.GetSubKeyNames
+
+                    GPUInfo = New cGPUInfo
+
+                    Dim SK As Microsoft.Win32.RegistryKey
+
+                    If RK.OpenSubKey(item).GetValueNames.Contains(My.Settings.DisplayDriverDescriptionValueName) Then
+
+                        SK = RK.OpenSubKey(item)
+
+                        GPUInfo.RegKey = SK
+                        GPUInfo.AdapterDescription = SK.GetValue(My.Settings.DisplayDriverDescriptionValueName)
+
+                        For Each exclusion As String In My.Settings.DisplayExcludeList.Split("|")
+
+                            If GPUInfo.AdapterDescription.ToLower.Contains(exclusion.ToLower) Then
+
+                                GPUInfo.IgnoreAdapter = True
+                                Exit For
+                            End If
+
+                        Next
+
+                        GPUInfo.ComputeMode = SK.GetValue("KMD_EnableInternalLargePage")
+
+                        If GPUInfo.ComputeMode = 2 Then GPUInfo.ComputeMode = True
+
+                    End If
+
+                    GPUList.Add(GPUInfo)
+                Next
+
+            Catch ex As Exception
+                Console.WriteLine(ex.Message)
+            End Try
+
+        End Sub
+
+
+
+		   Exit Sub
+
+        Console.ForegroundColor = ConsoleColor.Yellow
+        Console.WriteLine("{0}", My.Application.Info.AssemblyName & " " & My.Application.Info.Version.ToString)
+
+        Console.ForegroundColor = ConsoleColor.White
+
+        GetAdapters()
+
+        Console.WriteLine("")
+
+        For Each GPUInfo As cGPUInfo In GPUList
+
+            If GPUInfo.IsAMD = True Then
+
+                Console.WriteLine(String.Format("Adapter Description:   {0}", GPUInfo.AdapterDescription))
+                Console.WriteLine(String.Format("Adapter Instance:      {0}", GPUInfo.AdapterInstace))
+                Console.WriteLine(String.Format("IsAMD:                 {0}", GPUInfo.IsAMD))
+                Console.WriteLine(String.Format("Compute Mode Enabled:  {0}", GPUInfo.ComputeMode))
+                'Console.WriteLine(String.Format("Registry Key Path:     {0}", GPUInfo.RegKey.Name))
+                Console.WriteLine("")
+
+            End If
+
+        Next
+
+        Console.Write("Enable (")
+        Console.ForegroundColor = ConsoleColor.Green
+        Console.Write("1")
+        Console.ForegroundColor = ConsoleColor.White
+        Console.Write("), Disable (")
+        Console.ForegroundColor = ConsoleColor.Green
+        Console.Write("0")
+        Console.ForegroundColor = ConsoleColor.White
+        Console.Write(") compute mode:, Exit (")
+        Console.ForegroundColor = ConsoleColor.Red
+        Console.Write("x")
+        Console.ForegroundColor = ConsoleColor.White
+        Console.Write("): ")
+
+
+        Dim Answer = Console.ReadLine()
+
+        If Answer.ToLower = "x" Then Environment.Exit(0)
+
+
+        Do Until Answer = "0" Or Answer = "1" Or Answer.ToLower = "x"
+            Console.ForegroundColor = ConsoleColor.Red
+
+            Console.WriteLine("Invalid option")
+            Console.WriteLine()
+
+            Console.ForegroundColor = ConsoleColor.White
+
+            Console.Write("Enable (")
+            Console.ForegroundColor = ConsoleColor.Green
+            Console.Write("1")
+            Console.ForegroundColor = ConsoleColor.White
+            Console.Write("), Disable (")
+            Console.ForegroundColor = ConsoleColor.Green
+            Console.Write("0")
+            Console.ForegroundColor = ConsoleColor.White
+            Console.Write(") compute mode:, Exit (")
+            Console.ForegroundColor = ConsoleColor.Red
+            Console.Write("x")
+            Console.ForegroundColor = ConsoleColor.White
+            Console.Write("): ")
+            Answer = Console.ReadLine()
+
+        Loop
+
+
+        If Answer = "1" Then
+
+            Console.WriteLine("")
+            Console.WriteLine("Enabling Compute Mode for all AMD GPUs")
+            Console.WriteLine("")
+            Console.Write("Hit any Key to continue: Crtl-C to Abort ")
+            Console.ReadLine()
+
+            ModifyComputeModeAll(2)
+
+            Console.WriteLine("")
+            Console.ForegroundColor = ConsoleColor.Red
+            Console.WriteLine("System must be restarted foir change to take affect!")
+            Console.ForegroundColor = ConsoleColor.White
+
+        ElseIf Answer = "0" Then
+
+            Console.WriteLine("")
+            Console.WriteLine("Disabling Compute Mode for all AMD GPUs")
+            Console.WriteLine("")
+            Console.Write("Hit any Key to continue: Crtl-C to Abort ")
+            Console.ReadLine()
+
+            ModifyComputeModeAll(0)
+
+            Console.WriteLine("")
+            Console.ForegroundColor = ConsoleColor.Red
+            Console.WriteLine("System must be restarted for change to take affect!")
+            Console.ForegroundColor = ConsoleColor.White
+
+
+        End If

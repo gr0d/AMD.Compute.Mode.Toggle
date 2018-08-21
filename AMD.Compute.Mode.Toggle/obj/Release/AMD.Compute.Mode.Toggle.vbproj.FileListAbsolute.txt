@@ -1,0 +1,14 @@
+C:\Visual Studio Working\Desktop Integration\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\bin\Release\AMD.Compute.Mode.Toggle.exe.config
+C:\Visual Studio Working\Desktop Integration\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\bin\Release\AMD.Compute.Mode.Toggle.exe
+C:\Visual Studio Working\Desktop Integration\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\bin\Release\AMD.Compute.Mode.Toggle.xml
+C:\Visual Studio Working\Desktop Integration\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\obj\Release\AMD.Compute.Mode.Toggle.Resources.resources
+C:\Visual Studio Working\Desktop Integration\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\obj\Release\AMD.Compute.Mode.Toggle.vbproj.GenerateResource.Cache
+C:\Visual Studio Working\Desktop Integration\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\obj\Release\AMD.Compute.Mode.Toggle.exe
+C:\Visual Studio Working\Desktop Integration\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\obj\Release\AMD.Compute.Mode.Toggle.xml
+C:\Users\nbkgase\Source\Repos\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\bin\Release\AMD.Compute.Mode.Toggle.exe.config
+C:\Users\nbkgase\Source\Repos\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\obj\Release\AMD.Compute.Mode.Toggle.exe
+C:\Users\nbkgase\Source\Repos\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\obj\Release\AMD.Compute.Mode.Toggle.xml
+C:\Users\nbkgase\Source\Repos\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\bin\Release\AMD.Compute.Mode.Toggle.exe
+C:\Users\nbkgase\Source\Repos\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\bin\Release\AMD.Compute.Mode.Toggle.xml
+C:\Users\nbkgase\Source\Repos\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\obj\Release\AMD.Compute.Mode.Toggle.Resources.resources
+C:\Users\nbkgase\Source\Repos\AMD.Compute.Mode.Toggle\AMD.Compute.Mode.Toggle\obj\Release\AMD.Compute.Mode.Toggle.vbproj.GenerateResource.Cache
